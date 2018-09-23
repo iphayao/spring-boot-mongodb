@@ -16,19 +16,19 @@ public class CustomerController {
 
     @GetMapping()
     public ResponseEntity<?> getCustomers() {
-        List<Customer> customers = customerService.getCustomers();
+        List<Customer> customers = customerService.retrieveCustomers();
         return ResponseEntity.ok(customers);
     }
 
     @GetMapping(params = "name")
     public ResponseEntity<?> getCustomers(@RequestParam String name) {
-        List<Customer> customers = customerService.getCustomersByName(name);
+        List<Customer> customers = customerService.retrieveCustomersByName(name);
         return ResponseEntity.ok(customers);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getCustomer(@PathVariable String id) {
-        Optional<?> customer = customerService.getCustomers(id);
+        Optional<?> customer = customerService.retrieveCustomers(id);
         if(!customer.isPresent()) {
             return ResponseEntity.badRequest().build();
         }

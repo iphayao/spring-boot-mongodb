@@ -15,12 +15,16 @@ public class CustomerService {
         this.repository = repository;
     }
 
-    public List<Customer> getCustomers() {
+    public List<Customer> retrieveCustomers() {
         return repository.findAll();
     }
 
-    public Optional<Customer> getCustomers(String id) {
+    public Optional<Customer> retrieveCustomers(String id) {
         return repository.findById(id);
+    }
+
+    public List<Customer> retrieveCustomersByName(String name) {
+        return repository.findByFirstName(name);
     }
 
     public Customer createCustomer(Customer customer) {
@@ -46,7 +50,4 @@ public class CustomerService {
         }
     }
 
-    public List<Customer> getCustomersByName(String name) {
-        return repository.findByFirstName(name);
-    }
 }
